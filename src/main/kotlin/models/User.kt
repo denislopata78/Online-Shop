@@ -1,7 +1,7 @@
 package models
 
 class User(
-    var username: String,
+    var login: String,
     var password: String,
     var role: UserRole,
     var name: String,
@@ -10,5 +10,5 @@ class User(
     var phoneNumber: String
 )
 {
-    val cart = emptyList<CartItem>()
+    var cart = mutableListOf<CartItem>()
 }

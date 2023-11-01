@@ -1,12 +1,19 @@
-import models.CartItem
 import models.Order
 import models.Product
 import models.User
-import repo.AuthentificationService
+import models.UserRole
+import repo.OrderRepository
+import repo.ProductRepository
+import repo.UserRepository
+import services.AuthentificationService
 
 object DataBase {
-    val authentificationService: AuthentificationService? = null
-    val users: List<User> = mutableListOf()
-    val orders: List<Order> = mutableListOf()
-    val products: List<Product> = mutableListOf()
+    val userRepository = UserRepository()
+    val orderRepository = OrderRepository()
+    val productRepository = ProductRepository()
+    val user = User("guest", "", UserRole.CUSTOMER, "", "", "", "")
+    val authentificationService: AuthentificationService = AuthentificationService(userRepository, user)
+    var users: MutableList<User> = mutableListOf()
+    var orders: MutableList<Order> = mutableListOf()
+    var products: MutableList<Product> = mutableListOf()
 }
