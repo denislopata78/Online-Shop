@@ -6,13 +6,13 @@ import models.User
 
 class UserRepository {
     fun addItemToCart(cartItem: CartItem) {
-        DataBase.authentificationService.activeUser.cart.add(cartItem)
+        DataBase.authenticationService.activeUser.cart.add(cartItem)
     }
     fun removeItemFromCart(cartItem: CartItem) {
-        DataBase.authentificationService.activeUser.cart.removeIf { it.product.id == cartItem.product.id }
+        DataBase.authenticationService.activeUser.cart.removeIf { it.product.id == cartItem.product.id }
     }
     fun updateCartItems(cartItem: CartItem) {
-        for (item in DataBase.authentificationService.activeUser.cart) {
+        for (item in DataBase.authenticationService.activeUser.cart) {
             if (item.product.id == cartItem.product.id) {
                 item.totalPrice = cartItem.totalPrice
                 item.quantity = cartItem.quantity
