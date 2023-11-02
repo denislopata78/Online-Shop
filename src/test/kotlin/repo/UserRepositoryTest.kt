@@ -64,15 +64,19 @@ class UserRepositoryTest {
             { assertEquals(users.size, 1) },
             { assertEquals(users[0], usr) }
         )
+
+        users.clear()
     }
 
     @Test
     fun testRemoveUser() {
+        users.clear()
+
         var usr = User("first","123", UserRole.CUSTOMER, "", "", "", "")
         userRepository.addUser(usr)
         userRepository.removeUser(usr)
         assertAll(
-            { assertEquals(users.size, 0) },
+            { assertEquals(0, users.count()) },
         )
     }
 
@@ -83,6 +87,8 @@ class UserRepositoryTest {
         var usr1 = User("first","132", UserRole.CUSTOMER, "32", "", "", "")
         userRepository.updateUser(usr1)
         assertEquals(users[0].name, "32")
+
+        users.clear()
     }
 
     @Test

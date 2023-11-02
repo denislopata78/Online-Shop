@@ -46,6 +46,9 @@ class OrderRepositoryTest {
             { assertEquals(addedOrder!!.products[2], cartItem3)},
             { assertEquals(addedOrder!!.totalPrice, cartItem1.totalPrice + cartItem2.totalPrice + cartItem3.totalPrice)}
         )
+
+        DataBase.orders.clear()
+        DataBase.users.clear()
     }
 
     @Test
@@ -84,6 +87,9 @@ class OrderRepositoryTest {
             { assertEquals(addedOrders[1], newOrder2)},
             { assertEquals(addedOrders[2], newOrder3)},
         )
+
+        DataBase.orders.clear()
+        DataBase.users.clear()
     }
 
     @Test
@@ -114,5 +120,8 @@ class OrderRepositoryTest {
         val addedOrder = DataBase.orders.find { it.id == 1 }
 
         assertEquals(addedOrder?.status, OrderStatus.SHIPPING)
+
+        DataBase.orders.clear()
+        DataBase.users.clear()
     }
 }
