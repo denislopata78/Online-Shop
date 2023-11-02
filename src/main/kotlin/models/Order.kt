@@ -10,7 +10,7 @@ class Order(
 
     init {
         for (item in products) {
-            totalPrice = item.totalPrice
+            totalPrice += item.totalPrice
         }
     }
 }

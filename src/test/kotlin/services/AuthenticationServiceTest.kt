@@ -6,6 +6,7 @@ import models.UserRole
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assumptions.*
 import repo.UserRepository
 
 class AuthenticationServiceTest {
@@ -13,17 +14,8 @@ class AuthenticationServiceTest {
     @Test
     fun registerUser() {
         /*val userRepo = UserRepository()
-        val testUser = User(
-            "testUser",
-            "testPsw",
-            UserRole.CUSTOMER,
-            "testName",
-            "testSurname",
-            "testLastName",
-            "12345"
-        )
-        val authenticationService = AuthenticationService(userRepo, testUser)
 
+        val authenticationService = AuthenticationService(userRepo, testUser)
         authenticationService.registerUser(newUser)*/
         val newUser = User(
             "newUser",
@@ -35,6 +27,7 @@ class AuthenticationServiceTest {
             "newUser"
         )
 
+        DataBase.authenticationService.registerUser(newUser)
         val registeredUser = DataBase.users.find { it.login == "newUser" }
 
         assertAll("Register new user",
@@ -50,8 +43,7 @@ class AuthenticationServiceTest {
     }
 
     @Test
-    fun authorizationUser() {
-        val guest = User("guest", "", UserRole.CUSTOMER, "", "", "", "")
+    fun authorizationUserCorrectLoginData() {
         val newUser = User(
             "newUser",
             "newPsw",
@@ -61,17 +53,32 @@ class AuthenticationServiceTest {
             "newUser",
             "newUser"
         )
-        val userRepo = UserRepository()
+        DataBase.authenticationService.registerUser(newUser)
 
-        val authenticationService = AuthenticationService(userRepo, guest)
-        authenticationService.registerUser(newUser)
-
-        /*assertAll("User authorization",
-            { assertTrue(authenticationService.authorizationUser())}
-        )*/
+        assertAll(
+            { assertTrue(DataBase.authenticationService.authorizationUser(newUser.login, newUser.password))},
+            { assertFalse(DataBase.authenticationService.authorizationUser("Invalid", "Invalid")) }
+        )
     }
 
     @Test
     fun logoutUser() {
+        val newUser = User(
+            "newUser",
+            "newPsw",
+            UserRole.CUSTOMER,
+            "newUser",
+            "newUser",
+            "newUser",
+            "newUser"
+        )
+
+        DataBase.authenticationService.registerUser(newUser)
+        DataBase.authenticationService.authorizationUser(newUser.login, newUser.password)
+        assumeTrue(DataBase.authenticationService.activeUser.login == newUser.login)
+
+        DataBase.authenticationService.logoutUser()
+
+        assertTrue(DataBase.authenticationService.activeUser.login == "guest")
     }
 }
