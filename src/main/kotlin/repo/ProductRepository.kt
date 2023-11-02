@@ -14,8 +14,8 @@ class ProductRepository {
             }
         }
     }
-    fun getProduct(id: Int) {
-        DataBase.products.find { it.id == id }
+    fun getProduct(id: Int): Product? {
+        return DataBase.products.find { it.id == id }
     }
     fun removeProduct(id: Int) {
         DataBase.products.removeIf { it.id == id }
