@@ -12,10 +12,6 @@ class AuthenticationServiceTest {
 
     @Test
     fun registerUser() {
-        /*val userRepo = UserRepository()
-
-        val authenticationService = AuthenticationService(userRepo, testUser)
-        authenticationService.registerUser(newUser)*/
         val newUser = User(
             "newUser",
             "newPsw",

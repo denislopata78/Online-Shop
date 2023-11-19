@@ -5,19 +5,34 @@ import src.model.CartItem
 import src.model.User
 
 class UserRepository {
-    fun addItemToCart(cartItem: CartItem) {
-        DataBase.authenticationService.activeUser.cart.add(cartItem)
+    fun addItemToCart(cartItem: CartItem, user: User): Boolean {
+        val currentUser = getUser(user)
+        return if (currentUser != null) {
+            currentUser.cart.add(cartItem)
+            true
+        } else
+            false
     }
-    fun removeItemFromCart(cartItem: CartItem) {
-        DataBase.authenticationService.activeUser.cart.removeIf { it.product.id == cartItem.product.id }
+    fun removeItemFromCart(cartItem: CartItem, user: User): Boolean {
+        val currentUser = getUser(user)
+        return if (currentUser != null) {
+            currentUser.cart.removeIf { it.product.id == cartItem.product.id }
+            true
+        } else
+            false
     }
-    fun updateCartItems(cartItem: CartItem) {
-        for (item in DataBase.authenticationService.activeUser.cart) {
-            if (item.product.id == cartItem.product.id) {
-                item.totalPrice = cartItem.totalPrice
-                item.quantity = cartItem.quantity
+    fun updateCartItems(cartItem: CartItem, user: User): Boolean {
+        val currentUser = getUser(user)
+        return if (currentUser != null) {
+            for (item in currentUser.cart) {
+                if (item.product.id == cartItem.product.id) {
+                    item.totalPrice = cartItem.totalPrice
+                    item.quantity = cartItem.quantity
+                }
             }
-        }
+            true
+        } else
+            false
     }
     fun addUser(user: User) {
         DataBase.users.add(user)

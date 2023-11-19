@@ -10,8 +10,7 @@ class OrderRepository {
         DataBase.orders.add(order)
     }
     fun getUserOrders(user: User): List<Order> {
-        val filteredOrders = DataBase.orders.filter { user.login == it.user.login }
-        return filteredOrders;
+        return DataBase.orders.filter { user.login == it.user.login };
     }
 
     fun changeOrderStatus(idOrder: Int, orderStatus: OrderStatus) {

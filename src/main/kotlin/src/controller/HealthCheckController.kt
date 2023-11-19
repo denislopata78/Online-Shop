@@ -11,10 +11,8 @@ class HealthCheckController {
 
     @GetMapping("/{name}")
     fun getExample(@PathVariable("name") name: String): String {
-        // Ваша логика обработки данных и формирования ответа
         val responseBody = "Привет, $name!"
 
-        // Возвращаем ResponseEntity с телом ответа и статусом OK
         return responseBody
     }
 }
