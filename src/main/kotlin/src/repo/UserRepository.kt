@@ -34,8 +34,10 @@ class UserRepository {
         } else
             false
     }
-    fun addUser(user: User) {
+
+    fun addUser(user: User) : Boolean {
         DataBase.users.add(user)
+        return true
     }
     fun removeUser(user: User) {
         DataBase.users.removeIf { it.login == user.login }
