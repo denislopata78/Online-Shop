@@ -1,10 +1,10 @@
 package repo
 
-import DataBase
-import models.*
+import src.DataBase
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import src.model.*
 
 class OrderRepositoryTest {
 

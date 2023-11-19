@@ -1,4 +1,4 @@
-package models
+package src.model
 class Product (
     val id: Int,
     var name: String,

@@ -1,13 +1,12 @@
 package repo
 
-import DataBase
-import DataBase.user
-import DataBase.userRepository
-import DataBase.users
-import models.CartItem
-import models.Product
-import models.User
-import models.UserRole
+import src.DataBase.user
+import src.DataBase.userRepository
+import src.DataBase.users
+import src.model.CartItem
+import src.model.Product
+import src.model.User
+import src.model.UserRole
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -23,9 +22,9 @@ class UserRepositoryTest {
         assertAll(
             { assert(cart.size == 1) },
             { assert(cart[0] == cartItem) },
-            { kotlin.test.assertEquals(cart[0].quantity, cartItem.quantity) },
-            { kotlin.test.assertEquals(cart[0].totalPrice, cartItem.totalPrice) },
-            { kotlin.test.assertEquals(cart[0].product, cartItem.product) }
+            { assertEquals(cart[0].quantity, cartItem.quantity) },
+            { assertEquals(cart[0].totalPrice, cartItem.totalPrice) },
+            { assertEquals(cart[0].product, cartItem.product) }
         )
     }
 

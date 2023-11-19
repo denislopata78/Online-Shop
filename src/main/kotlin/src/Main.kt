@@ -1,12 +1,16 @@
-import models.*
-import repo.OrderRepository
+package src
 
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
+import src.model.*
+import src.repo.OrderRepository
+
+@SpringBootApplication
+class DemoApplication
 fun main(args: Array<String>) {
     println("Hello World! Hello Denis! Hello Feduk")
-
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     println("Program arguments: ${args.joinToString()}")
+    runApplication<DemoApplication>(*args)
 
     val cartItem = CartItem(Product(1, "test", 100f))
     cartItem.quantity = 3

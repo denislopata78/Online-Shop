@@ -1,4 +1,4 @@
-package models
+package src.model
 
 class Order(
     val id: Int,

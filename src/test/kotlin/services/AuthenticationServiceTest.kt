@@ -1,13 +1,12 @@
 package services
 
-import DataBase
-import models.User
-import models.UserRole
+import src.DataBase
+import src.model.User
+import src.model.UserRole
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Assumptions.*
-import repo.UserRepository
 
 class AuthenticationServiceTest {
 

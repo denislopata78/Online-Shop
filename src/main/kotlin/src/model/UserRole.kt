@@ -1,4 +1,4 @@
-package models
+package src.model
 
 enum class UserRole {
     CUSTOMER,

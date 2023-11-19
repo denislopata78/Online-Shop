@@ -1,8 +1,9 @@
-package repo
+package src.repo
 
-import models.Order
-import models.OrderStatus
-import models.User
+import src.model.Order
+import src.model.OrderStatus
+import src.model.User
+import src.DataBase
 
 class OrderRepository {
     fun addNewOrder(order: Order) {

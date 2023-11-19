@@ -1,11 +1,13 @@
-import models.Order
-import models.Product
-import models.User
-import models.UserRole
-import repo.OrderRepository
-import repo.ProductRepository
-import repo.UserRepository
+package src
+
 import services.AuthenticationService
+import src.model.Order
+import src.model.Product
+import src.model.User
+import src.model.UserRole
+import src.repo.OrderRepository
+import src.repo.ProductRepository
+import src.repo.UserRepository
 
 object DataBase {
     val userRepository = UserRepository()

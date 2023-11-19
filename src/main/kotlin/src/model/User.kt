@@ -1,4 +1,4 @@
-package models
+package src.model
 
 class User(
     var login: String,

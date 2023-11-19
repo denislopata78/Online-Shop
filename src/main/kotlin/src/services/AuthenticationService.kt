@@ -1,9 +1,9 @@
 package services
 
-import DataBase
-import models.User
-import models.UserRole
-import repo.UserRepository
+import src.model.UserRole
+import src.DataBase
+import src.model.User
+import src.repo.UserRepository
 
 class AuthenticationService (val userRepository: UserRepository, var activeUser: User)
 {

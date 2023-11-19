@@ -1,8 +1,8 @@
-package repo
+package src.repo
 
-import DataBase
-import models.CartItem
-import models.User
+import src.DataBase
+import src.model.CartItem
+import src.model.User
 
 class UserRepository {
     fun addItemToCart(cartItem: CartItem) {

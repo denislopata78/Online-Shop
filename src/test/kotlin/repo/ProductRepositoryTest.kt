@@ -1,10 +1,11 @@
 package repo
 
-import DataBase
-import models.Product
+import src.DataBase
+import src.model.Product
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import src.repo.ProductRepository
 
 class ProductRepositoryTest {
 

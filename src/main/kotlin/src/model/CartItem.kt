@@ -1,4 +1,4 @@
-package models
+package src.model
 
 class CartItem(val product: Product, quantity: Int = 1) {
     var quantity: Int = quantity

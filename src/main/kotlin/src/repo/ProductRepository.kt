@@ -1,6 +1,8 @@
-package repo
+package src.repo
 
-import models.Product
+import src.model.Product
+import src.DataBase
+
 class ProductRepository {
     fun addProduct(product: Product) {
         DataBase.products.add(product)
