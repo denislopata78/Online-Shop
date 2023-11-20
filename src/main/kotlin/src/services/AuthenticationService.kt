@@ -7,8 +7,8 @@ import src.repo.UserRepository
 
 class AuthenticationService
 {
-    fun registerUser(user: User) {
-        DataBase.userRepository.addUser(user)
+    fun registerUser(user: User) : Boolean {
+        return DataBase.userRepository.addUser(user)
     }
     fun authorizationUser(login: String, password: String): Boolean {
         val findUser = DataBase.users.find { it.login == login }
