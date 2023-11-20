@@ -1,5 +1,6 @@
 package src.controller
 
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import src.DataBase
@@ -24,25 +25,25 @@ class UserController {
 
     @PutMapping("/add/itemToCart")
     fun addItemToCart(@RequestBody userCartItem: UserCartItem): ResponseEntity<String> {
-        return if(DataBase.userRepository.addItemToCart(userCartItem.cartItem, userCartItem.user)) {
+        return if(DataBase.userRepository.addItemToCart(userCartItem.cartItem, userCartItem.userLogin)) {
             ResponseEntity.ok("All good")
         } else
-            ResponseEntity.status(401).body("Ошибка добавления");
+            ResponseEntity.status(400).body("Feduk invalid user id");
     }
 
-    @DeleteMapping("/add/itemToCart")
+    @DeleteMapping("/delete/itemToCart")
     fun deleteItemToCart(@RequestBody userCartItem: UserCartItem): ResponseEntity<String> {
-        return if(DataBase.userRepository.removeItemFromCart(userCartItem.cartItem, userCartItem.user)) {
+        return if(DataBase.userRepository.removeItemFromCart(userCartItem.cartItem, userCartItem.userLogin)) {
             ResponseEntity.ok("All good")
         } else
-            ResponseEntity.status(401).body("Ошибка удаления");
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid");
     }
 
-    @PostMapping("/add/itemToCart")
+    @PostMapping("/update/itemToCart")
     fun changeItemToCart(@RequestBody userCartItem: UserCartItem): ResponseEntity<String> {
-        return if(DataBase.userRepository.updateCartItems(userCartItem.cartItem, userCartItem.user)) {
+        return if(DataBase.userRepository.updateCartItems(userCartItem.cartItem, userCartItem.userLogin)) {
             ResponseEntity.ok("All good")
         } else
-            ResponseEntity.status(401).body("Ошибка обновления");
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Update invalid");
     }
 }
